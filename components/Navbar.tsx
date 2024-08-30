@@ -1,7 +1,6 @@
 "use client"
 import React, { useState } from 'react';
-import { AiOutlineMenu } from 'react-icons/ai';
-import { AiOutlineClose } from 'react-icons/ai';
+import { FaBars, FaTimes } from 'react-icons/fa'; // For hamburger icon
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,37 +8,34 @@ const Navbar = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <div className='bg-black flex justify-between items-center p-4'>
-      <div className='text-2xl sm:text-3xl font-bold text-white'>
-        <span className='text-[#d89be4]'>Maryam </span>Muzzammil
-      </div>
-      
-      {/* Hamburger Icon */}
-      <div className='block lg:hidden'>
-        <button onClick={toggleMenu} className='text-white'>
-          {isOpen ? <AiOutlineClose size={24} /> : <AiOutlineMenu size={24} />}
-        </button>
+    <div className='bg-black flex flex-col md:flex-row justify-between items-center p-4'>
+      <div className='flex items-center w-full justify-between md:justify-start'>
+        <div className='text-xl md:text-2xl font-bold text-white italic ml-4 md:ml-16' style={{ fontFamily: 'Georgia' }}>
+          <span className='text-[#d89be4]'>Maryam </span>Muzzammil
+        </div>
+        <div className='md:hidden'>
+          <button onClick={toggleMenu} className='text-white'>
+            {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+          </button>
+        </div>
       </div>
 
-      {/* Menu Items */}
-      <div className={`lg:flex ${isOpen ? 'block' : 'hidden'} absolute lg:relative top-16 left-0 w-full lg:w-auto bg-black lg:bg-transparent`}>
-        <ul className='flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-6 text-white'>
-          <li className='relative group italic cursor-pointer px-3 py-2'>
-            <span className='relative z-10'>Contact</span>
-            <div className='absolute inset-0 bg-gradient-to-r from-[#d89be4] to-[#f7a1c3] rounded-md opacity-0 group-hover:opacity-50 transition-opacity duration-300'></div>
+      <div className={`md:flex md:items-center md:space-x-6 mt-4 md:mt-0 ${isOpen ? 'block' : 'hidden'}`}>
+        <ul className='flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 mr-12' style={{ fontFamily: 'Georgia' }}>
+          <li className='relative group italic cursor-pointer'>
+            <span className='hover:underline decoration-[#d89be4] decoration-2 text-white italic font-medium'>Contact</span>
           </li>
-          <li className='relative group italic cursor-pointer px-3 py-2'>
-            <span className='relative z-10'>About</span>
-            <div className='absolute inset-0 bg-gradient-to-r from-[#d89be4] to-[#f7a1c3] rounded-md opacity-0 group-hover:opacity-50 transition-opacity duration-300'></div>
+          <li className='relative group italic cursor-pointer'>
+            <span className='hover:underline decoration-[#d89be4] decoration-2 text-white italic md:pl-6 font-medium'>About</span>
           </li>
-          <li className='relative group italic cursor-pointer px-3 py-2'>
-            <span className='relative z-10'>Project</span>
-            <div className='absolute inset-0 bg-gradient-to-r from-[#d89be4] to-[#f7a1c3] rounded-md opacity-0 group-hover:opacity-50 transition-opacity duration-300'></div>
+          <li className='relative group italic cursor-pointer'>
+            <span className='block px-3 py-0.5 text-white italic bg-gradient-to-r from-[#b969c5] to-[#6c0087] rounded-md md:ml-7 font-medium group-hover:bg-gradient-to-r group-hover:from-[#6f047f] group-hover:to-[#cb78e0] transition-all duration-300'>Projects</span>
           </li>
+
         </ul>
       </div>
     </div>
-  )
+  );
 }
 
 export default Navbar;
